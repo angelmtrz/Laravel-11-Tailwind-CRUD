@@ -1,4 +1,5 @@
 <?php
+//Controlador para rutas web
 //php artisan make:controller ProductController --resource
 
 namespace App\Http\Controllers;
