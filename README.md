@@ -7,6 +7,21 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+## Instalación y configuraciones
+
+- Clonar repositorio **git clone https://github.com/angelmtrz/Laravel-11-Tailwind-CRUD.git**
+- Ingresar a la carpeta: **cd Laravel-11-Tailwind-CRUD**
+- Abrir con VSCode: **code .**
+- Duplicar y renombrar archivo: **.env.example > .env**
+- Modificar .env: **Configurar credenciales de BD**
+- Crear la BD: **Crear una BD con el nombre requerido**
+- En terminal de VSCode: **npm install**
+- En terminal de VSCode: **composer install**
+- En terminal de VSCode (opcional): **composer update**
+- En terminal de VSCode: **php artisan key:generate**
+- En terminal de VSCode: **php artisan migrate --seed**
+- En terminal de VSCode: **php artisan serve**
+
 ## Información del proyecto
 
 Proyecto de demostración realizado en clase, del curso **Lenguaje de Programación IV**
