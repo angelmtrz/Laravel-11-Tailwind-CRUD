@@ -1,4 +1,6 @@
 <?php
+//php artisan install:api
+// Seleecionar [Yes] para ejecutar la migración adicional
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;

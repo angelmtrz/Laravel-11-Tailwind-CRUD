@@ -34,6 +34,8 @@ se cubren los siguientes temas:
 - Rutas y Controladores
 - Vistas Blade y Componentes
 - Estilos Tailwind CSS
+- Publicación de archivo de rutas api.php: (php artisan install:api)
+- Rutas y Controladores Api
 
 ## License
 
