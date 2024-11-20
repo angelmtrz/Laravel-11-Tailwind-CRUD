@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Product;
 
 class ProductController extends Controller
@@ -58,9 +59,25 @@ class ProductController extends Controller
             'description' => 'required|string|max:300',
             'stock' => 'required|numeric',
             'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        Product::create($request->all());
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('assets/images/products', 'public');
+        }
+
+        //dd($imagePath);
+
+        //Product::create($request->all());
+        Product::create([
+            'code' => $request->code,
+            'name' => $request->name,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'image' => $imagePath
+        ]);
+
         return redirect()->route('products.index');
     }
 
@@ -96,9 +113,30 @@ class ProductController extends Controller
             'description' => 'required|string|max:300',
             'stock' => 'required|numeric',
             'price' => 'required|numeric',
+            'image' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
         ]);
 
-        $product->update($request->all());
+        // Inicializar la variable para la ruta de la imagen
+        $imagePath = $product->image; // Mantener la imagen existente por defecto
+
+        if ($request->hasFile('image')) {
+            if ($product->image) {
+                Storage::disk('public')->delete($product->image);
+            }
+
+            $imagePath = $request->file('image')->store('assets/images/products', 'public');
+        }
+
+        //$product->update($request->all());
+        $product->update([
+            'code' => $request->code,
+            'name' => $request->name,
+            'description' => $request->description,
+            'stock' => $request->stock,
+            'price' => $request->price,
+            'image' => $imagePath
+        ]);
+
         return redirect()->route('products.index');
     }
 

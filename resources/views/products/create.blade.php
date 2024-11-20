@@ -19,7 +19,7 @@
                                             <i data-feather="chevrons-left"></i>
                                         </x-secondary-button-link>
                                     </div>
-                                    <form class="p-4 bg-gray-100" action="{{ route('products.store') }}" method="POST">
+                                    <form class="p-4 bg-gray-100" action="{{ route('products.store') }}" method="POST" enctype="multipart/form-data">
                                         @csrf
                                         @if ($errors->any())
                                             <div class="mb-4 p-4 text-red-600 bg-red-100 border border-red-300 rounded">
@@ -54,6 +54,12 @@
                                             <label for="price" class="block text-gray-700">Precio S/</label>
                                             <input type="number" class="mt-1 block w-full p-2 border border-gray-300 rounded" name="price" step="0.01">
                                             <span class="text-red-600">{{ $errors->first('price') }}</span>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label for="image" class="block text-gray-700">Imagen</label>
+                                            <input type="file" accept="image/png, image/jpeg" class="mt-1 block w-full p-2 border border-gray-300 rounded" name="image">
+                                            <span class="text-xs">Formatos permitidos: png, jpeg - Tamaño máximo: 2MB</span>
+                                            <span class="text-red-600">{{ $errors->first('image') }}</span>
                                         </div>
                                         <div class="flex justify-between items-center mb-2">
                                             <x-primary-button>{{ __('Registrar') }}</x-primary-button>

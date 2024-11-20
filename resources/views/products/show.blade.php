@@ -24,7 +24,8 @@
                                         <p class="mt-2 text-gray-700">{{ $product->description }}</p>
                                         <p class="mt-2 font-semibold">S/ {{ number_format($product->price, 2) }}</p>
                                     </div>
-                                    <img src="https://picsum.photos/600" class="w-full h-auto" alt="imagen">
+                                    <img src="{{ $product->image ? asset('storage/' .$product->image) : asset('assets/images/no-image.png') }}"
+                                        class="w-full h-auto" alt="imagen">
                                 </div>
                             </div>
                         </div>
