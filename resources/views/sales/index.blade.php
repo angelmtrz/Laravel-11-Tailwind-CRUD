@@ -49,32 +49,6 @@
                                         <x-primary-button-link href="{{ route('sales.show', $sale) }}">
                                             <i data-feather="info"></i>
                                         </x-primary-button-link>
-                                        <x-primary-button-link href="{{ route('sales.edit', $sale) }}">
-                                            <i data-feather="edit"></i>
-                                        </x-primary-button-link>
-                                        <form action="{{ route('sales.destroy', $sale) }}" method="POST" class="inline">
-                                            @csrf
-                                            @method('DELETE')
-                                            <x-primary-button type="button" class="ms-1" onclick="confirmDelete(this.form)">
-                                                <i data-feather="trash-2"></i>
-                                            </x-primary-button>
-                                        </form>
-                                        <script>
-                                            function confirmDelete(form) {
-                                                Swal.fire({
-                                                    title: '¿Estás seguro?',
-                                                    text: 'No podrás revertir esto!',
-                                                    icon: 'warning',
-                                                    showCancelButton: true,
-                                                    confirmButtonText: 'Sí, eliminar',
-                                                    cancelButtonText: 'Cancelar'
-                                                }).then((result) => {
-                                                    if (result.isConfirmed) {
-                                                        form.submit();
-                                                    }
-                                                });
-                                            }
-                                        </script>
                                     </td>
                                 </tr>
                             @endforeach

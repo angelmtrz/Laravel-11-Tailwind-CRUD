@@ -1,30 +1,32 @@
 <?php
-//Controlador para rutas api
-//php artisan make:controller Api/ProductController --resource
 
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use App\Models\Product;
+use App\Models\Customer;
 
-class ProductController extends Controller
+class CustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index(Request $request): JsonResponse
     {
-        //$products = Product::all();
-        $search = $request->get('q');
+        //$customers = Customer::all();
+        $query = Customer::query();
+        if ($request->has('search') && $request->search) {
+            $search = $request->search;
+            $query->where(function ($q) use ($search) {
+                $q->where('company_name', 'like', "%{$search}%")
+                        ->orWhere('document', 'like', "%{$search}%");
+            });
+        }
 
-        $products = Product::when($search, function ($query, $search) {
-            return $query->where('name', 'like', "%{$search}%")
-                ->orWhere('code', 'like', "%{$search}%");
-        })->paginate(10);
+        $customers = $query->paginate(10);
 
-        return response()->json($products, 200);
+        return response()->json($customers, 200);
     }
 
     /**
@@ -46,11 +48,9 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product): JsonResponse
+    public function show(string $id)
     {
-        $product = Product::find($product->id);
-
-        return response()->json($product, 200);
+        //
     }
 
     /**
