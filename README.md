@@ -36,6 +36,8 @@ se cubren los siguientes temas:
 - Estilos Tailwind CSS
 - Publicación de archivo de rutas api.php: (php artisan install:api)
 - Rutas y Controladores Api
+- Implementación de JWT Auth [JWT Auth](https://jwt-auth.readthedocs.io/en/stable/laravel-installation/)
+- Pruebas en cliente REST Api: [Thunder Client](https://www.thunderclient.com/), [Insomnia](https://jwt-auth.readthedocs.io/en/stable/laravel-installation/)
 
 ## License
 

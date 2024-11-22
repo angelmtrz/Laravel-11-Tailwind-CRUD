@@ -2,14 +2,22 @@
 //php artisan install:api
 // Seleecionar [Yes] para ejecutar la migración adicional
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\ProductController;
-use App\Http\Controllers\Api\CustomerController;
 
-Route::get('/user', function (Request $request) {
+/* Route::get('/user', function (Request $request) {
     return $request->user();
-})->middleware('auth:sanctum');
+})->middleware('auth:sanctum'); */
 
-Route::apiResource('/products', ProductController::class);
-Route::apiResource('/customers', CustomerController::class);
+Route::group([
+    'middleware' => 'api',
+    'prefix' => 'auth'
+], function ($router) {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('logout', [AuthController::class, 'logout']);
+    Route::post('refresh', [AuthController::class, 'refresh']);
+    Route::post('me', [AuthController::class, 'me']);
+});
+
+Route::apiResource('/products', ProductController::class)->middleware('auth:api');
